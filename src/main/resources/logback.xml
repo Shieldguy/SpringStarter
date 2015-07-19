@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- check every 30 second. if file was changed, then reload -->
+<configuration scan="true" scanPeriod="60 seconds">
+ 
+    <!-- you can use extern properties file -->
+    <!-- property resource="resource.properties"/ -->
+ 
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern> %d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/springstarter.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- create log file per a day -->
+            <fileNamePattern>logs/springstarter.%d{yyyy-MM-dd}.log</fileNamePattern>
+ 
+            <!-- how long reserve log files -->
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+ 
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <logger name="org.springframework" level="info"/>
+    <logger name="org.hibernate" level="error"/>
+    <logger name="org.springstarter" level="debug"/>
+    <root level="info">
+        <appender-ref ref="console"/>
+        <appender-ref ref="FILE"/>
+    </root>
+    <!--  if condition='property("RUN_MODE").equals("SERVICE")'>
+        <then>
+            <!- if RUN_MODE set to SERVICE, then change logging level to info ->
+            <root level="info">
+                <appender-ref ref="console"/>
+                <appender-ref ref="FILE"/>
+            </root>
+        </then>
+        <!- if RUN_MODE is not SERVICE, then change logging level to debug ->
+        <else>
+            <root level="debug">
+                <appender-ref ref="console"/>
+                <appender-ref ref="FILE"/>
+            </root>
+        </else>
+    </if -->
+</configuration>

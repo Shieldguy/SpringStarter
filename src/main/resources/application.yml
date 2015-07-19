@@ -1,0 +1,51 @@
+spring:
+    application:
+        name: Spring Starter Project
+    profiles:
+        active: ssl
+    view:
+        prefix: /WEB-INF/views/
+        suffix: .jsp
+    jpa:
+        hibernate:
+            ddl-auto: create
+        generate-ddl: false
+        show-sql: true
+        database: mysql
+    datasource:
+        url: jdbc:mysql://localhost:3306/spring?useUnicode=true&charaterEncoding=utf-8
+        username: spring
+        password: password
+        driverClassName: org.mariadb.jdbc.Driver
+    resources:
+        cachePeriod: 2600
+    mail:
+        host: smtp.gmail.com
+        port: 465
+        username: 
+        password: 
+        properties:
+            mail.smtp.auth: true
+            mail.smtp.starttls.enable: true
+            mail.transport.protocol: smtp
+            mail.smtp.socketFactory.class: javax.net.ssl.SSLSocketFactory
+
+---
+spring:
+    profiles: dev
+server:
+    port: 8080
+    ssl:
+        key-store: 
+        key-store-password: 
+        key-password: 
+          
+---
+spring:
+    profiles: ssl
+server:
+    port: 8443
+    ssl:
+        key-store: src/main/resources/private/keystore
+        key-store-password: changeit
+        key-password: changeit
