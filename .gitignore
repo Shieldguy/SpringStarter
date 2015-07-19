@@ -3,10 +3,30 @@
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 
+# Project resources
+.private
+.project
+.classpath
+.settings
+.gradle
+.springBeans
+
+# Compiled resources
+bin
+build
+private
+
 # Package Files #
 *.jar
 *.war
 *.ear
+
+# Temporary files
+*.gz
+.DS_Store
+
+# log files
+*.log
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
